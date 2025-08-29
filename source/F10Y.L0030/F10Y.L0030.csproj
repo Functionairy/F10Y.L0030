@@ -1,15 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>1.0.0</Version>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="Main">
+    <TargetFramework>net8.0</TargetFramework>
+    <NoWarn>CS1573;CS1587;CS1591;IDE0130;CA1860</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Label="Package">
+    <Version>0.0.1</Version>
     <Authors>DCoats</Authors>
-    <Company>Rivet</Company>
-    <Copyright>Copyright (c) Rivet 2025</Copyright>
-    <Description>--- ADD DESCRIPTION ---</Description>
+    <Copyright>Copyright (c) Functionairy 2025</Copyright>
+    <Description>Signature type, signature string, and identity string library.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryUrl>https://github.com/Functionairy/F10Y.L0030.git</RepositoryUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\F10Y.L0001\source\F10Y.L0001.L000\F10Y.L0001.L000.csproj" />
+    <ProjectReference Include="..\..\..\F10Y.L0001\source\F10Y.L0001.X000\F10Y.L0001.X000.csproj" />
+    <ProjectReference Include="..\..\..\F10Y.T0004\source\F10Y.T0004\F10Y.T0004.csproj" />
+    <ProjectReference Include="..\..\..\F10Y.T0009\source\F10Y.T0009\F10Y.T0009.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,19 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
+  <PropertyGroup Label="Main">
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <Version>1.0.0</Version>
+    <TargetFramework>net8.0</TargetFramework>
+    <NoWarn>CA1860;CS1573;CS1587;CS1591;IDE0130</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Label="Package">
+    <Version>1.0.0</Version>
     <Authors>DCoats</Authors>
-    <Company>Rivet</Company>
-    <Copyright>Copyright (c) Rivet 2025</Copyright>
-    <Description>--- ADD DESCRIPTION ---</Description>
+    <Copyright>Copyright (c) Functionairy 2025</Copyright>
+    <Description>Construction console project for the F10Y.L0030 library.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryUrl>https://github.com/Functionairy/F10Y.L0030.git</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\F10Y.L0030.Q000\F10Y.L0030.Q000.csproj" />
     <ProjectReference Include="..\F10Y.L0030\F10Y.L0030.csproj" />
+    <ProjectReference Include="..\..\..\F10Y.T0014\source\F10Y.T0014.T002\F10Y.T0014.T002.csproj" />
   </ItemGroup>
 </Project>

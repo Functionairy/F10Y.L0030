@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="Main">
+    <TargetFramework>net8.0</TargetFramework>
+    <NoWarn>CS1573;CS1587;CS1591;IDE0130</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Label="Package">
+    <Version>0.0.1</Version>
+    <Authors>DCoats</Authors>
+    <Copyright>Copyright (c) Functionairy 2025</Copyright>
+    <Description>Demonstrations library for the F10Y.L0030 signature, signature string, and identity string library.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\F10Y.T0014\source\F10Y.T0014.T001\F10Y.T0014.T001.csproj" />
+    <ProjectReference Include="..\..\..\F10Y.T0006\source\F10Y.T0006\F10Y.T0006.csproj" />
+    <ProjectReference Include="..\F10Y.L0030\F10Y.L0030.csproj" />
+  </ItemGroup>
+</Project>
