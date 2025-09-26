@@ -8,7 +8,7 @@ namespace F10Y.L0030
     [ValuesMarker]
     public partial interface ITypeNameAffixSets
     {
-        public string[] All =>
+        public string[] All_Suffixes =>
         [
             Instances.TypeNameAffixes.Array_Suffix,
             Instances.TypeNameAffixes.ByReference_Suffix_String,

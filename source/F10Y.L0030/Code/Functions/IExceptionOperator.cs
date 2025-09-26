@@ -14,12 +14,17 @@ namespace F10Y.L0030
 #pragma warning disable IDE1006 // Naming Styles
 
         [Ignore]
-        public L0000.IExceptionOperator _L0000 => L0000.ExceptionOperator.Instance;
+        L0000.IExceptionOperator _L0000 => L0000.ExceptionOperator.Instance;
 
 #pragma warning restore IDE1006 // Naming Styles
 
 
-        public Exception Get_UnrecognizedSignatureType(Signature signature)
+        Exception Get_UnrecognizedKindMarkerException(char kindMarker)
+        {
+            return new Exception($"{kindMarker}: Unrecognized kind marker.");
+        }
+
+        Exception Get_UnrecognizedSignatureType(Signature signature)
         {
             var signatureTypeName = Instances.TypeNameOperator.Get_TypeNameOf(signature);
 
@@ -27,13 +32,13 @@ namespace F10Y.L0030
             return output;
         }
 
-        public Exception Get_UnknownElementTypeRelationshipException()
+        Exception Get_UnknownElementTypeRelationshipException()
         {
             var output = new Exception("Unknown element type relationship.");
             return output;
         }
 
-        public Exception Get_UnrecognizedMemberTypeException(MemberInfo memberInfo)
+        Exception Get_UnrecognizedMemberTypeException(MemberInfo memberInfo)
         {
             var message = Instances.ExceptionMessageOperator.Get_UnrecognizedMemberTypeExceptionMessage(memberInfo);
 
@@ -41,5 +46,14 @@ namespace F10Y.L0030
             return output;
         }
 
+        Exception Get_ErrorSignatureDoesNotExistException()
+        {
+            return new Exception("There are no error signature strings.");
+        }
+
+        Exception Get_NamespaceSignatureDoesNotExistException()
+        {
+            return new Exception("There are no namespace signature strings.");
+        }
     }
 }

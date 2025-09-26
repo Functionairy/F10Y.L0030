@@ -11,7 +11,7 @@ namespace F10Y.L0030
     [FunctionsMarker]
     public partial interface ISignatureStringOperator
     {
-        public string Get_SignatureString(AttributeSignature attributeSignature)
+        string Get_SignatureString(AttributeSignature attributeSignature)
         {
             var typeToken = Instances.SignatureOperator.Get_SignatureString_ForType(attributeSignature.Type);
 
@@ -55,13 +55,13 @@ namespace F10Y.L0030
         /// <summary>
         /// Append does not insert a <see cref="L0000.ITokenSeparators.NamespaceNameTokenSeparator"/>.
         /// </summary>
-        public string Append(string part1, string part2)
+        string Append(string part1, string part2)
         {
             var output = $"{part1}{part2}";
             return output;
         }
 
-        public string Append_NestedTypeTypeName(
+        string Append_NestedTypeTypeName(
             string parentTypeName,
             string nestedTypeName)
         {
@@ -73,7 +73,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Append_ObsoleteToken(string signatureStringValue)
+        string Append_ObsoleteToken(string signatureStringValue)
         {
             var output = this.Append(
                 signatureStringValue,
@@ -82,7 +82,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Append_OutputType(
+        string Append_OutputType(
             string signatureStringValue,
             string outputTypeName)
         {
@@ -94,7 +94,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Append_ParameterList(
+        string Append_ParameterList(
             string signatureStringValue,
             string parameterListToken)
         {
@@ -105,7 +105,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Append_ParameterName(
+        string Append_ParameterName(
             string parameterTypeString,
             string parameterName)
         {
@@ -117,7 +117,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Append_TypeParameterList(
+        string Append_TypeParameterList(
             string signatureStringValue,
             string typeParameterListToken)
         {
@@ -131,7 +131,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Combine inserts a <see cref="L0000.ITokenSeparators.NamespaceNameTokenSeparator"/>.
         /// </summary>
-        public string Combine(
+        string Combine(
             string part1,
             string part2)
         {
@@ -143,7 +143,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Combine(
+        string Combine(
             string part1,
             string part2,
             string separator)
@@ -156,7 +156,7 @@ namespace F10Y.L0030
         /// Removes the leading and trailing open and close parameter list token separators.
         /// Note: can handle null and empty strings; returns empty if empty or null.
         /// </summary>
-        public string Get_ParameterListValue(string parameterList)
+        string Get_ParameterListValue(string parameterList)
         {
             parameterList = Instances.StringOperator.Empty_IfNull(parameterList);
 
@@ -168,7 +168,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Get_SignatureStringValue_WithoutObsolete_IfObsolete(
+        string Get_SignatureStringValue_WithoutObsolete_IfObsolete(
             string signatureStringValueMaybeObsolete,
             out bool isObsolete)
         {
@@ -182,7 +182,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public int Get_TokenIndexOf_MatchingGenericTypeListTokenSeparatorsCount(
+        int Get_TokenIndexOf_MatchingGenericTypeListTokenSeparatorsCount(
             IEnumerable<string> tokens,
             int startTokenIndex_Inclusive)
         {
@@ -218,7 +218,7 @@ namespace F10Y.L0030
             throw new Exception($"({openTokensCount}:{Instances.TokenSeparators.GenericTypeListOpenTokenSeparator}, {closeTokensCount}:{Instances.TokenSeparators.GenericTypeListCloseTokenSeparator}), unpaired counts.");
         }
 
-        public (int startTokenIndex, int endTokenIndex)
+        (int startTokenIndex, int endTokenIndex)
             Get_TokenIndicesOf_GenericTypeList(
             IEnumerable<string> tokens,
             int initialTokenIndex_Inclusive = 0)
@@ -239,7 +239,7 @@ namespace F10Y.L0030
             return (startTokenIndex, endTokenIndex);
         }
 
-        public bool Contains_GenericTypeListOpenToken(string signatureStringPart)
+        bool Contains_GenericTypeListOpenToken(string signatureStringPart)
         {
             var output = Instances.StringOperator.Contains(
                 signatureStringPart,
@@ -248,7 +248,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public (
+        (
             string declaringTypeNamespacedTypeName,
             string modifiedMethodName,
             string methodGenericTypesListValue,
@@ -342,7 +342,7 @@ namespace F10Y.L0030
                 parameterListValue);
         }
 
-        public (
+        (
             string declaringTypeNamespacedTypeName,
             string propertyName,
             string parameterListValue)
@@ -389,7 +389,7 @@ namespace F10Y.L0030
             return (declaringTypeNamespacedTypeName, propertyName, parameterListValue);
         }
 
-        public string Get_ArrayElementType(string arrayTypeSignatureString)
+        string Get_ArrayElementType(string arrayTypeSignatureString)
         {
             var output = Instances.StringOperator.Except_Ending(
                 arrayTypeSignatureString,
@@ -398,7 +398,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Get_ReferenceElementType(string referenceTypeSignatureString)
+        string Get_ReferenceElementType(string referenceTypeSignatureString)
         {
             var output = Instances.StringOperator.Except_Ending(
                 referenceTypeSignatureString,
@@ -407,7 +407,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Get_PointerElementType(string referenceTypeSignatureString)
+        string Get_PointerElementType(string referenceTypeSignatureString)
         {
             var output = Instances.StringOperator.Except_Ending(
                 referenceTypeSignatureString,
@@ -421,7 +421,7 @@ namespace F10Y.L0030
         /// (Inclusive of the beginning and ending open and close token separators.)
         /// Note: generic type lists can have nested generic lists within. This method just returns the top-level list.
         /// </summary>
-        public Range[] Get_GenericInputListRanges(string signatureString)
+        Range[] Get_GenericInputListRanges(string signatureString)
         {
             static IEnumerable<Range> Internal(string signatureString)
             {
@@ -513,7 +513,7 @@ namespace F10Y.L0030
         /// (Returns the list, inclusive of the beginning and ending open and close token separators.)
         /// Note: generic type lists can have nested generic lists within. This method just returns the top-level list.
         /// </summary>
-        public string[] Get_GenericInputListValues(string signatureString)
+        string[] Get_GenericInputListValues(string signatureString)
         {
             var genericListRanges = this.Get_GenericInputListRanges(signatureString);
 
@@ -535,7 +535,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Get_GenericInputList(string signatureString)
+        string Get_GenericInputList(string signatureString)
         {
             var output = this.Get_GenericInputListValues(signatureString)
                 .First();
@@ -546,7 +546,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Note: can handle null and empty generic type lists (return empty).
         /// </summary>
-        public string Get_GenericTypeListValue(string genericTypeList)
+        string Get_GenericTypeListValue(string genericTypeList)
         {
             var nonNullGenericTypeList = Instances.StringOperator.Empty_IfNull(genericTypeList);
 
@@ -562,7 +562,7 @@ namespace F10Y.L0030
         /// The value does not include the open and close tokens
         /// (<see cref="L0000.ITokenSeparators.GenericTypeListOpenTokenSeparator"/>, <see cref="L0000.ITokenSeparators.GenericTypeListCloseTokenSeparator"/>).
         /// </summary>
-        public string Get_GenericTypeListValue(string[] typedSignatureStringParts)
+        string Get_GenericTypeListValue(string[] typedSignatureStringParts)
         {
             var indexOfFirstTypeNamePart = this.Get_IndexOfFirstTypeNamePart(typedSignatureStringParts);
 
@@ -596,7 +596,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Get_GenericParameterCountToken(
+        string Get_GenericParameterCountToken(
             string parameterCountTokenSeparator,
             TypeSignature[] genericTypeInputs = default)
         {
@@ -624,7 +624,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Note: can handle the null and empty case (returns an empty string).
         /// </summary>
-        public string Get_GenericTypeParameterCountToken(TypeSignature[] genericTypeInputs = default)
+        string Get_GenericTypeParameterCountToken(TypeSignature[] genericTypeInputs = default)
         {
             var output = this.Get_GenericParameterCountToken(
                 Instances.TokenSeparators.TypeParameterCountSeparator_String,
@@ -633,14 +633,14 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Get_GenericTypeParameterTypeName(string typeSignatureStringValue)
+        string Get_GenericTypeParameterTypeName(string typeSignatureStringValue)
         {
             // Remove the first character, which is the generic type parameter prefix.
             var output = typeSignatureStringValue.Except_First();
             return output;
         }
 
-        public string Get_GenericMethodParameterTypeName(string typeSignatureStringValue)
+        string Get_GenericMethodParameterTypeName(string typeSignatureStringValue)
         {
             // Remove the first two characters, which are the generic method type parameter prefix.
             var output = typeSignatureStringValue.Except_FirstTwo();
@@ -650,7 +650,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Note: can handle the null and empty case (returns an empty string).
         /// </summary>
-        public string Get_GenericMethodTypeParameterCountToken(TypeSignature[] genericTypeInputs = default)
+        string Get_GenericMethodTypeParameterCountToken(TypeSignature[] genericTypeInputs = default)
         {
             var output = this.Get_GenericParameterCountToken(
                 Instances.TokenSeparators.MethodTypeParameterCountSeparator,
@@ -663,7 +663,7 @@ namespace F10Y.L0030
         /// The first type name part is either the last part of the array of typed signature string parts,
         /// or the first part that contains a generic type list open token.
         /// </summary>
-        public int Get_IndexOfFirstTypeNamePart(string[] typedSignatureStringParts)
+        int Get_IndexOfFirstTypeNamePart(string[] typedSignatureStringParts)
         {
             for (int i = 0; i < typedSignatureStringParts.Length; i++)
             {
@@ -682,7 +682,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public char Get_KindMarker(string signatureStringPart)
+        char Get_KindMarker(string signatureStringPart)
         {
             // The kind marker is always the first character.
             var output = signatureStringPart.First();
@@ -692,7 +692,7 @@ namespace F10Y.L0030
         /// <summary>
         /// For many kinds of member (event, field), the last part of a namespace token separator separated string is the name of the member.
         /// </summary>
-        public (string firstPart, string lastPart) Get_LastNamespaceParts(string signatureStringPart)
+        (string firstPart, string lastPart) Get_LastNamespaceParts(string signatureStringPart)
         {
             var indexOfLastNamespaceTokenSeparator = Instances.StringOperator.Get_LastIndexOf(
                 Instances.TokenSeparators.NamespaceNameTokenSeparator,
@@ -705,7 +705,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string[] Get_ListItems(string listValue)
+        string[] Get_ListItems(string listValue)
         {
             var isNullOrEmpty = Instances.StringOperator.Is_NullOrEmpty(listValue);
             if (isNullOrEmpty)
@@ -777,7 +777,7 @@ namespace F10Y.L0030
             return output.ToArray();
         }
 
-        public string Get_NamespaceName(string[] typedSignatureStringParts)
+        string Get_NamespaceName(string[] typedSignatureStringParts)
         {
             // Given an array of typed signature string parts, the namespace name is the concatenation of all parts up to (but not including) the first type name part.
             // The first type name part is either the last part of the array of typed signature string parts, or the first part that contains a generic type list open token.
@@ -796,7 +796,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Can handle signatures that do not have output types (like constructor methods), in which case a null string is returned for the output type name.
         /// </summary>
-        public (string signatureStringPart, string outputTypeName) Get_OutputTypeParts(string signatureString)
+        (string signatureStringPart, string outputTypeName) Get_OutputTypeParts(string signatureString)
         {
             var tokens = Instances.StringOperator.Split(
                 Instances.TokenSeparators._ForSignatureString.OutputTypeTokenSeparator,
@@ -814,7 +814,7 @@ namespace F10Y.L0030
             return (signatureStringPart, outputTypeName);
         }
 
-        public string Get_SignatureString(MemberInfo member)
+        string Get_SignatureString(MemberInfo member)
         {
             var signature = Instances.SignatureOperator.Get_Signature(member);
 
@@ -822,37 +822,37 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Get_SignatureString(Signature signature)
+        string Get_SignatureString(Signature signature)
         {
             var output = Instances.SignatureOperator.Get_SignatureString(signature);
             return output;
         }
 
-        public string Get_SignatureStringValue(string signatureString)
+        string Get_SignatureStringValue(string signatureString)
         {
             var output = Instances.KindMarkerOperator.Remove_TypeKindMarker(signatureString);
             return output;
         }
 
-        public string Get_EventSignatureString(string identityStringValue)
+        string Get_EventSignatureString(string identityStringValue)
         {
             var output = Instances.KindMarkerOperator.Make_EventKindMarked(identityStringValue);
             return output;
         }
 
-        public string Get_FieldSignatureString(string identityStringValue)
+        string Get_FieldSignatureString(string identityStringValue)
         {
             var output = Instances.KindMarkerOperator.Make_FieldKindMarked(identityStringValue);
             return output;
         }
 
-        public string Get_MethodSignatureString(string identityStringValue)
+        string Get_MethodSignatureString(string identityStringValue)
         {
             var output = Instances.KindMarkerOperator.Make_MethodKindMarked(identityStringValue);
             return output;
         }
 
-        public string Get_PropertySignatureString(string identityStringValue)
+        string Get_PropertySignatureString(string identityStringValue)
         {
             var output = Instances.KindMarkerOperator.Make_PropertyKindMarked(identityStringValue);
             return output;
@@ -861,13 +861,13 @@ namespace F10Y.L0030
         /// <summary>
         /// Prefixes the identity string with the type kind-marker value to get a type signature string.
         /// </summary>
-        public string Get_TypeSignatureString(string identityStringValue)
+        string Get_TypeSignatureString(string identityStringValue)
         {
             var output = Instances.KindMarkerOperator.Make_TypeKindMarked(identityStringValue);
             return output;
         }
 
-        public string Get_TypesListValue_FromTypesList(string typesList)
+        string Get_TypesListValue_FromTypesList(string typesList)
         {
             // Remove the first and last characters.
             var output = typesList[1..^1];
@@ -877,7 +877,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Gets the simple type name.
         /// </summary>
-        public string Get_TypeName(string[] typedSignatureStringParts)
+        string Get_TypeName(string[] typedSignatureStringParts)
         {
             var indexOfFirstTypeNamePart = this.Get_IndexOfFirstTypeNamePart(typedSignatureStringParts);
 
@@ -894,11 +894,11 @@ namespace F10Y.L0030
         /// <summary>
         /// Does the type signature end with any of the element type name affixes (<see cref="ITypeNameAffixes.Array_Suffix"/>, <see cref="ITypeNameAffixes.ByReference_Suffix"/>, or <see cref="ITypeNameAffixes.Pointer_Suffix"/>).
         /// </summary>
-        public bool Has_ElementType(string typedSignatureString)
+        bool Has_ElementType(string typedSignatureString)
         {
             var output = Instances.StringOperator.Ends_WithAny(
                 typedSignatureString,
-                Instances.TypeNameAffixSets.All);
+                Instances.TypeNameAffixSets.All_Suffixes);
 
             return output;
         }
@@ -910,7 +910,7 @@ namespace F10Y.L0030
         /// <remarks>
         /// This function can handle compiler-generated names like "T:D8S.C0002.Deploy.IOperations+&lt;&gt;c__DisplayClass0_0".
         /// </remarks>
-        public bool Has_GenericInputsList(string typedSignatureString)
+        bool Has_GenericInputsList(string typedSignatureString)
         {
             var genericInputListRanges = this.Get_GenericInputListRanges(typedSignatureString);
 
@@ -924,7 +924,7 @@ namespace F10Y.L0030
         /// <remarks>
         /// This function will fail for compiler-generated names like "T:D8S.C0002.Deploy.IOperations+&lt;&gt;c__DisplayClass0_0".
         /// </remarks>
-        public bool Has_GenericInputsList_Simple(string typedSignatureString)
+        bool Has_GenericInputsList_Simple(string typedSignatureString)
         {
             var output = Instances.StringOperator.Contains(
                 typedSignatureString,
@@ -936,7 +936,7 @@ namespace F10Y.L0030
         /// <summary>
         /// If the typed signature string part contains a namespace token separator (and it is before a generic type list open token separator, if present), then it contains a namespace name.
         /// </summary>
-        public bool Has_Namespace(string typedSignatureStringPart)
+        bool Has_Namespace(string typedSignatureStringPart)
         {
             var indexOfNamespaceTokenSeparatorOrNotFound = Instances.StringOperator.Get_IndexOf_OrNotFound(
                 typedSignatureStringPart,
@@ -978,7 +978,7 @@ namespace F10Y.L0030
             }
         }
 
-        public bool Is_Array(string typeSignatureStringValue)
+        bool Is_Array(string typeSignatureStringValue)
         {
             var output = Instances.StringOperator.Ends_With(
                 typeSignatureStringValue,
@@ -987,7 +987,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public bool Is_Reference(string typeSignatureStringValue)
+        bool Is_Reference(string typeSignatureStringValue)
         {
             var output = Instances.StringOperator.Ends_With(
                 typeSignatureStringValue,
@@ -996,7 +996,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public bool Is_Pointer(string typeSignatureStringValue)
+        bool Is_Pointer(string typeSignatureStringValue)
         {
             var output = Instances.StringOperator.Ends_With(
                 typeSignatureStringValue,
@@ -1008,7 +1008,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Does the signature string contain the explicit implementation namespace token separator (<see cref="L0000.ITokenSeparators.ExplicitImplementationNamespaceTokenSeparator"/>)?
         /// </summary>
-        public bool Is_ExplicitlyImplemented(string signatureStringValue)
+        bool Is_ExplicitlyImplemented(string signatureStringValue)
         {
             var output = Instances.StringOperator.Contains(
                 signatureStringValue,
@@ -1020,7 +1020,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Does the type signature start with the method type parameter prefix, <inheritdoc cref="ITypeNameAffixes.MethodTypeParameterMarker_Prefix" path="descendant::name"/>.
         /// </summary>
-        public bool Is_GenericMethodParameterTypeName(string typeSignatureStringValue)
+        bool Is_GenericMethodParameterTypeName(string typeSignatureStringValue)
         {
             var output = Instances.StringOperator.Starts_With(
                 typeSignatureStringValue,
@@ -1032,7 +1032,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Does the type signature start with the type parameter prefix, <inheritdoc cref="ITypeNameAffixes.TypeParameterMarker_Prefix" path="descendant::name"/>.
         /// </summary>
-        public bool Is_GenericTypeParameterTypeName(string typeSignatureStringValue)
+        bool Is_GenericTypeParameterTypeName(string typeSignatureStringValue)
         {
             var length = typeSignatureStringValue.Length;
 
@@ -1057,7 +1057,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Get the indices of nested type name tokens separators that are not in a generic type inputs list.
         /// </summary>
-        public int[] Get_IndicesOfNestedTypeNameTokenSeparators(string typeSignatureStringValue)
+        int[] Get_IndicesOfNestedTypeNameTokenSeparators(string typeSignatureStringValue)
         {
             var genericTypeInputListRanges = this.Get_GenericInputListRanges(typeSignatureStringValue);
 
@@ -1069,7 +1069,7 @@ namespace F10Y.L0030
         }
 
         /// <inheritdoc cref="Get_IndicesOfNestedTypeNameTokenSeparators(string)"/>
-        public int[] Get_IndicesOfNestedTypeNameTokenSeparators(
+        int[] Get_IndicesOfNestedTypeNameTokenSeparators(
             string typeSignatureStringValue,
             Range[] genericTypeInputListRanges)
         {
@@ -1094,7 +1094,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public bool Is_Nested(
+        bool Is_Nested(
             string typeSignatureStringValue,
             Range[] genericTypeInputListRanges)
         {
@@ -1123,7 +1123,7 @@ namespace F10Y.L0030
         /// Does the type signature string value contain the nested type name token separator?
         /// (Outside of a generic type input list, since otherwise one of the generic type inputs would be a nested type.)
         /// </summary>
-        public bool Is_Nested(string typeSignatureStringValue)
+        bool Is_Nested(string typeSignatureStringValue)
         {
             var genericTypeInputListRanges = this.Get_GenericInputListRanges(typeSignatureStringValue);
 
@@ -1141,7 +1141,7 @@ namespace F10Y.L0030
         /// <remarks>
         /// Note: not appropriate for use, since types might have nested types inside their generic type input lists.
         /// </remarks>
-        public bool Is_Nested_Simple(string typeSignatureStringValue)
+        bool Is_Nested_Simple(string typeSignatureStringValue)
         {
             var output = Instances.StringOperator.Contains(
                 typeSignatureStringValue,
@@ -1150,7 +1150,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public bool Is_Obsolete(string signatureStringValue)
+        bool Is_Obsolete(string signatureStringValue)
         {
             var output = Instances.StringOperator.Ends_With(
                 signatureStringValue,
@@ -1160,20 +1160,20 @@ namespace F10Y.L0030
         }
 
         /// <inheritdoc cref="IMemberNameOperator.Modify_MemberName_ForSignatureString(string)"/>
-        public string Modify_MemberName_ForSignatureString(string name)
+        string Modify_MemberName_ForSignatureString(string name)
         {
             var output = Instances.MemberNameOperator.Modify_MemberName_ForSignatureString(name);
             return output;
         }
 
         /// <inheritdoc cref="IMemberNameOperator.Modify_MemberName_ForMemberName(string)"/>
-        public string Modify_MemberName_ForMemberName(string name)
+        string Modify_MemberName_ForMemberName(string name)
         {
             var output = Instances.MemberNameOperator.Modify_MemberName_ForMemberName(name);
             return output;
         }
 
-        public string Remove_ObsoleteToken(string signatureStringWithObsoleteToken)
+        string Remove_ObsoleteToken(string signatureStringWithObsoleteToken)
         {
             var output = Instances.StringOperator.Except_Ending_Strict(
                 signatureStringWithObsoleteToken,

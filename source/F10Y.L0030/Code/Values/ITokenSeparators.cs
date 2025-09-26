@@ -13,41 +13,54 @@ namespace F10Y.L0030
 #pragma warning disable IDE1006 // Naming Styles
 
         [Ignore]
-        public L0000.ITokenSeparators _L0000 => L0000.TokenSeparators.Instance;
+        L0000.ITokenSeparators _L0000 => L0000.TokenSeparators.Instance;
 
         [Ignore]
-        public ITokenSeparators_ForIdentityString _ForIdentityString => TokenSeparators_ForIdentityString.Instance;
+        ITokenSeparators_ForIdentityString _ForIdentityString => TokenSeparators_ForIdentityString.Instance;
 
         [Ignore]
-        public ITokenSeparators_ForSignatureString _ForSignatureString => TokenSeparators_ForSignatureString.Instance;
+        ITokenSeparators_ForSignatureString _ForSignatureString => TokenSeparators_ForSignatureString.Instance;
 
 #pragma warning restore IDE1006 // Naming Styles
 
 
         /// <summary>
+        /// <para><value>" ["</value> ('[' preceeded by a space)</para>
+        /// </summary>
+        /// <remarks>
+        /// This token separator is used as an indicator of whether a signature string has attributes.
+        /// </remarks>
+        string AttributeListIndicationSeparator => " [";
+
+        /// <summary>
         /// <para>':' (colon)</para>
         /// Separates the first character (which is the kind marker_ from the rest of the identity name (which is the identity name value).
         /// </summary>
-        public const char KindMarkerTokenSeparator_Constant = ':';
+        const char KindMarkerTokenSeparator_Constant = ':';
 
         /// <inheritdoc cref="KindMarkerTokenSeparator_Constant"/>
-        public char KindMarkerTokenSeparator => KindMarkerTokenSeparator_Constant;
+        char KindMarkerTokenSeparator => KindMarkerTokenSeparator_Constant;
 
         /// <summary>
         /// <para>',' (comma)</para>
         /// </summary>
-        public const char ListItemSeparator_Constant = ',';
+        const char ListItemSeparator_Constant = ',';
 
         /// <inheritdoc cref="ListItemSeparator_Constant"/>
-        public char ListItemSeparator => ListItemSeparator_Constant;
+        char ListItemSeparator => ListItemSeparator_Constant;
 
         /// <summary>
         /// <para><name>'~' (tilde)</name></para>
         /// Separates tokens in an output-type named type name from each other.
         /// </summary>
-        public const char OutputTypeNameTokenSeparator_Constant = '~';
+        const char OutputTypeNameTokenSeparator_Constant = '~';
 
         /// <inheritdoc cref="OutputTypeNameTokenSeparator_Constant"/>
-        public char OutputTypeNameTokenSeparator => OutputTypeNameTokenSeparator_Constant;
+        char OutputTypeNameTokenSeparator => OutputTypeNameTokenSeparator_Constant;
+
+        /// <summary>
+        /// <para><value>'=' (equals)</value></para>
+        /// </summary>
+        char NamedArgumentTokenSeparator => '=';
     }
 }
