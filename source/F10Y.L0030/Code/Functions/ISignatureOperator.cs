@@ -53,6 +53,18 @@ namespace F10Y.L0030
             return output;
         }
 
+        FieldSignature Get_Signature_OfField(string signatureString)
+            => this.Get_Signature(signatureString) as FieldSignature;
+
+        MethodSignature Get_Signature_OfMethod(string signatureString)
+            => this.Get_Signature(signatureString) as MethodSignature;
+
+        PropertySignature Get_Signature_OfProperty(string signatureString)
+            => this.Get_Signature(signatureString) as PropertySignature;
+
+        TypeSignature Get_Signature_OfType(string signatureString)
+            => this.Get_Signature(signatureString) as TypeSignature;
+
         PropertySignature Get_PropertySignature_Internal(string propertySignatureStringValue)
         {
             (string signatureStringPart, string outputTypeName) = this.Get_OutputTypeParts(propertySignatureStringValue);

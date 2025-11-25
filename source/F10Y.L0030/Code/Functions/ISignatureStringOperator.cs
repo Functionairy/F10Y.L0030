@@ -11,6 +11,21 @@ namespace F10Y.L0030
     [FunctionsMarker]
     public partial interface ISignatureStringOperator
     {
+        Signature Get_Signature(string signatureString)
+            => Instances.SignatureOperator.Get_Signature(signatureString);
+
+        FieldSignature Get_Signature_OfField(string signatureString)
+            => Instances.SignatureOperator.Get_Signature_OfField(signatureString);
+
+        MethodSignature Get_Signature_OfMethod(string signatureString)
+            => Instances.SignatureOperator.Get_Signature_OfMethod(signatureString);
+
+        PropertySignature Get_Signature_OfProperty(string signatureString)
+            => Instances.SignatureOperator.Get_Signature_OfProperty(signatureString);
+
+        TypeSignature Get_Signature_OfType(string signatureString)
+            => Instances.SignatureOperator.Get_Signature_OfType(signatureString);
+
         string Get_SignatureString(AttributeSignature attributeSignature)
         {
             var typeToken = Instances.SignatureOperator.Get_SignatureString_ForType(attributeSignature.Type);

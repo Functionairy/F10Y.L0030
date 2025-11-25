@@ -267,7 +267,8 @@ namespace F10Y.L0030
                 else
                 {
                     var nestedTypeParentTypeSignature = this.Get_TypeSignature(
-                        nestedTypeParentType);
+                        nestedTypeParentType,
+                        false);
 
                     output.NestedTypeParent = nestedTypeParentTypeSignature;
                 }
