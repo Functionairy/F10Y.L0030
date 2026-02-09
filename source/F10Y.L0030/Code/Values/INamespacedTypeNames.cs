@@ -11,6 +11,11 @@ namespace F10Y.L0030
         /// <summary>
         /// <para><value>System.ObsoleteAttribute</value></para>
         /// </summary>
-        public string System_ObsoleteAttribute => "System.ObsoleteAttribute";
+        string System_ObsoleteAttribute => "System.ObsoleteAttribute";
+
+        /// <summary>
+        /// <para><value>System.Runtime.CompilerServices.AsyncStateMachineAttribute</value></para>
+        /// </summary>
+        string System_Runtime_CompilerServices_AsyncStateMachineAttribute => "System.Runtime.CompilerServices.AsyncStateMachineAttribute";
     }
 }
