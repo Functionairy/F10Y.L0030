@@ -3,29 +3,34 @@ using System.Linq;
 using System.Reflection;
 
 using F10Y.T0002;
+using F10Y.T0011;
 
 
 namespace F10Y.L0030
 {
+    /// <inheritdoc cref="L0000.IFieldInfoOperator" path="/summary"/>
+    /// <remarks>
+    /// <inheritdoc cref="Documentation.Project_SelfDescription" path="/summary"/>
+    /// </remarks>
     [FunctionsMarker]
-    public partial interface IFieldInfoOperator
+    public partial interface IFieldInfoOperator :
+        L0000.IFieldInfoOperator
     {
-        public Type Get_DeclaringType(FieldInfo fieldInfo)
-            => Instances.MemberInfoOperator.Get_DeclaringType(fieldInfo);
+#pragma warning disable IDE1006 // Naming Styles
 
-        public Type Get_FieldType(FieldInfo fieldInfo)
-        {
-            var output = fieldInfo.FieldType;
-            return output;
-        }
+        [Ignore]
+        L0000.IFieldInfoOperator _L0000 => L0000.FieldInfoOperator.Instance;
+
+#pragma warning restore IDE1006 // Naming Styles
+
 
         /// <summary>
         /// Quality-of-life overload for <see cref="Get_Name(FieldInfo)"/>.
         /// </summary>
-        public string Get_FieldName(FieldInfo fieldInfo)
+        string Get_FieldName(FieldInfo fieldInfo)
             => this.Get_Name(fieldInfo);
 
-        public FieldInfo Get_FieldOf(
+        FieldInfo Get_FieldOf(
             Type type,
             string fieldName)
         {
@@ -36,7 +41,7 @@ namespace F10Y.L0030
             return method;
         }
 
-        public FieldInfo Get_FieldOf<T>(string fieldName)
+        FieldInfo Get_FieldOf<T>(string fieldName)
         {
             var type = Instances.TypeOperator.Get_TypeOf<T>();
 
@@ -47,10 +52,10 @@ namespace F10Y.L0030
             return output;
         }
 
-        public string Get_Name(FieldInfo field)
+        string Get_Name(FieldInfo field)
             => Instances.MemberInfoOperator.Get_Name(field);
 
-        public bool Is_Name(
+        bool Is_Name(
             FieldInfo field,
             string fieldName)
             => Instances.MemberInfoOperator.Is_Name(

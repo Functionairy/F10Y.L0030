@@ -15,33 +15,33 @@ namespace F10Y.L0030
 #pragma warning disable IDE1006 // Naming Styles
 
         [Ignore]
-        public L0000.IMethodInfoOperator _L0000 => L0000.MethodInfoOperator.Instance;
+        L0000.IMethodInfoOperator _L0000 => L0000.MethodInfoOperator.Instance;
 
 #pragma warning restore IDE1006 // Naming Styles
 
 
         /// <inheritdoc cref="L0001.L000.IMethodBaseOperator.Get_GenericTypeParameters(MethodBase)"/>
-        public Type[] Get_GenericTypeParameters(MethodInfo methodInfo)
+        Type[] Get_GenericTypeParameters(MethodInfo methodInfo)
         {
             var output = Instances.MethodBaseOperator.Get_GenericTypeParameters(methodInfo);
             return output;
         }
 
         /// <inheritdoc cref="L0001.L000.IMethodBaseOperator.Get_InputParameters(MethodBase)"/>
-        public ParameterInfo[] Get_InputParameters(MethodInfo methodInfo)
+        ParameterInfo[] Get_InputParameters(MethodInfo methodInfo)
         {
             var output = Instances.MethodBaseOperator.Get_InputParameters(methodInfo);
             return output;
         }
 
-        public Type Get_ReturnType(MethodInfo methodInfo)
+        Type Get_ReturnType(MethodInfo methodInfo)
         {
             // After upgrade to MetadataLoadContext 8.0, parsing of function pointer types is supported.
             var output = methodInfo.ReturnType;
             return output;
         }
 
-        public int Get_TypeParameterCount(MethodInfo methodInfo)
+        int Get_TypeParameterCount(MethodInfo methodInfo)
         {
             var output = methodInfo.GetGenericArguments().Length;
             return output;
@@ -50,7 +50,7 @@ namespace F10Y.L0030
         /// <summary>
         /// Determines if the method has any input parameters.
         /// </summary>
-        public bool Has_InputParameters(MethodInfo methodInfo)
+        bool Has_InputParameters(MethodInfo methodInfo)
         {
             var inputParameters = this.Get_InputParameters(methodInfo);
 
@@ -61,20 +61,20 @@ namespace F10Y.L0030
         /// <summary>
         /// Determines if the method is an explicit, or implicit, conversion operator.
         /// </summary>
-        public bool Is_ConversionOperator(MethodInfo methodInfo)
+        bool Is_ConversionOperator(MethodInfo methodInfo)
         {
             var output = Instances.MethodNameOperator.Is_ConversionOperator(methodInfo.Name);
             return output;
         }
 
         /// <inheritdoc cref="L0001.L000.IMethodBaseOperator.Is_Generic(MethodBase)"/>
-        public bool Is_Generic(MethodInfo methodInfo)
+        bool Is_Generic(MethodInfo methodInfo)
         {
             var output = Instances.MethodBaseOperator.Is_Generic(methodInfo);
             return output;
         }
 
-        public MethodInfo Get_MethodOf(
+        MethodInfo Get_MethodOf(
             Type type,
             string methodName)
         {
@@ -85,7 +85,7 @@ namespace F10Y.L0030
             return method;
         }
 
-        public MethodInfo Get_MethodOf<T>(string methodName)
+        MethodInfo Get_MethodOf<T>(string methodName)
         {
             var type = Instances.TypeOperator.Get_TypeOf<T>();
 
@@ -96,7 +96,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public MethodInfo Get_MethodOf(
+        MethodInfo Get_MethodOf(
             Type type,
             string methodName,
             int genericTypeInputCount)
@@ -110,7 +110,7 @@ namespace F10Y.L0030
             return method;
         }
 
-        public MethodInfo Get_MethodOf<T>(
+        MethodInfo Get_MethodOf<T>(
             string methodName,
             int genericTypeInputCount)
         {
@@ -124,7 +124,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public int Get_GenericTypeInputCount(MethodInfo methodInfo)
+        int Get_GenericTypeInputCount(MethodInfo methodInfo)
         {
             var output = methodInfo.GetGenericArguments().Length;
             return output;
@@ -133,13 +133,13 @@ namespace F10Y.L0030
         /// <summary>
         /// Gets the standard name for the method.
         /// </summary>
-        public string Get_Name(MethodInfo method)
+        string Get_Name(MethodInfo method)
         {
             var output = method.Name;
             return output;
         }
 
-        public bool Is_GenericTypeInputCount(
+        bool Is_GenericTypeInputCount(
             MethodInfo methodInfo,
             int genericTypeInputCount)
         {
@@ -149,7 +149,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public bool Is_Name(
+        bool Is_Name(
             MethodInfo method,
             string methodName)
         {
@@ -159,7 +159,7 @@ namespace F10Y.L0030
             return output;
         }
 
-        public bool Is_Name(
+        bool Is_Name(
             MethodInfo method,
             string methodName,
             int genericTypeInputCount)
@@ -168,26 +168,6 @@ namespace F10Y.L0030
                 && this.Is_Name(method, methodName)
                 && this.Is_GenericTypeInputCount(method, genericTypeInputCount)
                 ;
-
-            return output;
-        }
-
-        /// <summary>
-        /// Determines whether the method is a property get or set method.
-        /// </summary>
-        public bool Is_PropertyMethod(MethodInfo methodInfo)
-        {
-            // There is no direct method to determine if a method is a property method.
-            // This implemention gets the properties of the method's declaring type, and then tests if the method is one of the get- or set-mmethods of any of the properties.
-
-            var output = true
-                // All property methods have special names.
-                && methodInfo.IsSpecialName
-                // Among all the properties of the method's declaring type, is the current method a get- or set-method of a property?
-                && methodInfo.DeclaringType.GetProperties()
-                    .Any(property => false
-                        || property.GetGetMethod() == methodInfo
-                        || property.GetSetMethod() == methodInfo);
 
             return output;
         }
